@@ -1,0 +1,22 @@
+import { Injectable } from "@angular/core";
+import { RoomList } from "../rooms";
+import { HttpClient } from '@angular/common/http';
+
+
+@Injectable({
+    providedIn: 'root'
+})
+export class RoomsService {
+    roomList: RoomList[] = [];
+
+    // Add HttpClient
+    constructor(private http:HttpClient) { }
+
+    getRooms() {
+        return this.http.get<RoomList[]>('api/rooms');
+    }
+
+    addRoom(room: RoomList) {
+        return this.http.post<RoomList>('api/rooms', room);
+    }
+}
