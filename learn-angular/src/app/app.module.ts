@@ -8,6 +8,15 @@ import { RoomsBookingComponent } from './rooms/rooms-booking/rooms-booking.compo
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { FormsModule } from '@angular/forms';
+import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
+import { LoginComponent } from './login/login.component';
+import { AppNavComponent } from './app-nav/app-nav.component';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule} from '@angular/material/button';
+import { MatIconModule} from '@angular/material/icon';
+import { MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -15,12 +24,21 @@ import { FormsModule } from '@angular/forms';
     RoomsComponent,
     RoomsBookingComponent,
     RoomsAddComponent,
-    RoomsListComponent
+    RoomsListComponent,
+    PageNotfoundComponent,
+    LoginComponent,
+    AppNavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
