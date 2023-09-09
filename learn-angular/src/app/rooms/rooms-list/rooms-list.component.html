@@ -1,1 +1,24 @@
-<p>rooms-list works!</p>
+Room List
+<table class="table">
+    <tr>
+        <th>Room Type</th>
+        <th>Room Price</th>
+        <th>Room Amenitities</th>
+        <th>Checkin Time</th>
+        <th>Rating</th>
+        <th>Select Room</th>
+    </tr>
+
+    <tr *ngFor="let room of rooms; let e = even" [ngClass]="e? 'even': 'odd'">
+        <td>{{room.roomType}}</td>
+        <td>{{room.price}}</td>
+        <td>{{room.amenities}}</td>
+        <td>{{room.checkinTime}}</td>
+        <td>{{room.rating}}</td>
+        <td>
+            <button class="btn btn-primary" [routerLink]="['/rooms', room.roomNumber]">Book Room</button>
+        </td>
+
+    </tr>
+
+</table>

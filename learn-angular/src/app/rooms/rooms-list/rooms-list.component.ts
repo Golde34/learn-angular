@@ -22,5 +22,5 @@ export class RoomsListComponent implements OnInit{
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);
   }
-
+  
 }
