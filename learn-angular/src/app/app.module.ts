@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,9 +14,19 @@ import { AppNavComponent } from './app-nav/app-nav.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule} from '@angular/material/button';
-import { MatIconModule} from '@angular/material/icon';
-import { MatListModule} from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { InitService } from './init.service';
+import { HoverDirective } from './hover.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LayoutModule } from '@angular/cdk/layout';
+import { RequestInterceptor } from './request.interceptor';
+
+function initFactory(InitService: InitService) {
+  return () => InitService.init();
+}
 
 @NgModule({
   declarations: [
@@ -27,20 +37,36 @@ import { MatListModule} from '@angular/material/list';
     RoomsListComponent,
     PageNotfoundComponent,
     LoginComponent,
-    AppNavComponent
+    AppNavComponent,
+    HoverDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    
+    BrowserAnimationsModule,
+    HttpClientModule,
+    LayoutModule,
+
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initFactory,
+      deps: [InitService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

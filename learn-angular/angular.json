@@ -5,7 +5,11 @@
   "projects": {
     "learn-angular": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -64,7 +68,8 @@
               "browserTarget": "learn-angular:build:production"
             },
             "development": {
-              "browserTarget": "learn-angular:build:development"
+              "browserTarget": "learn-angular:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

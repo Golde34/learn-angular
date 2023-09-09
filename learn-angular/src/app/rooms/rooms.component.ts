@@ -7,48 +7,58 @@ import { RoomsService } from './services/rooms.service';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.css']
 })
-
 export class RoomsComponent implements OnInit {
-  
-  hotelName = 'Golde Hotel';
+
+  hotelName = 'Hilton Hotel'
   numberOfRooms = 20;
-  hideRooms = true;
+  hideRooms = false;
   role = 'public';
   selectedRoom!: RoomList;
 
+
+  rooms: Room = {
+    totalRooms: 20,
+    availableRooms: 10,
+    bookedRooms: 5
+  };
+
   roomList: RoomList[] = [];
 
-  rooms : Room =  { 
-    totalRooms:20, 
-    availableRooms: 10, 
-    bookedRooms: 5, 
-  };
-  
   constructor(private roomService: RoomsService) { }
 
   ngOnInit(): void {
-    this.roomService.getRooms().subscribe((rooms) => {this.roomList = rooms});
+
+    //normally you put data retrieving in the ngOnInit event.
+    this.roomService.getRooms().subscribe(rooms => {this.roomList = rooms});
+    //console.log(this.roomService.getRooms());
+
   }
 
   toggle() {
-    this.hideRooms = !this.hideRooms;    
-  }  
+    this.hideRooms = !this.hideRooms;
+  }
 
   selectRoom(room: RoomList) {
     this.selectedRoom = room;
-    console.log(room);
+    console.log(room)
   }
 
   addRoom() {
-    const room:RoomList = {
+
+    const room:RoomList = 
+    {
       roomType: 'Delux Room',
-      amenities: 'TV, AC, Fridge',
-      price: 2000,
+      amenities: 'AC, TV, WiFi',
+      price: 119.0,
       photos: "pic url",
       checkinTime: new Date('2022-12-06'),
       checkoutTime: new Date(),
-      rating: 4.5
-  } 
-    this.roomService.addRoom(room).subscribe((room) => this.roomList.push(room));
+      rating: 4.8
+    }
+
+    //this.roomList = this.roomService.addRoom(room);
+
+    this.roomService.addRoom(room).subscribe(room => {this.roomList.push(room)});
   }
-} 
+
+}

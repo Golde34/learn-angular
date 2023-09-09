@@ -1,13 +1,14 @@
-<div>{{ room | json }}</div>
-<div>{{ roomsForm.valid | json }}</div>
-<div>{{ roomsForm.value | json }}</div>
-<div>{{ roomsForm.pristine | json }}</div>
-<div>{{ roomsForm.dirty | json }}</div>
-<div>{{ roomsForm.invalid | json }}</div>
+<div>{{room | json}}</div>
+<div>{{roomsForm.valid | json}}</div>
+<div>{{roomsForm.pristine | json}}</div>
+<div>{{roomsForm.dirty | json}}</div>
+<div>{{roomsForm.invalid | json}}</div>
+<div>{{roomsForm.value | json}}</div>
 
 <div class="alert alert-success">
     {{successMessage}}
 </div>
+
 
 <form #roomsForm="ngForm" (ngSubmit)="AddRoom(roomsForm)">
     <div class="form-group">

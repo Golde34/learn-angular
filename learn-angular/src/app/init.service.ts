@@ -12,7 +12,6 @@ export class InitService {
 
     init() {
         return this.http.get('assets/config.json')
-        .pipe(tap((config) => (this.config = config)))
-        .toPromise();   
+        .pipe(tap((config) => (this.config = config)));  
     }
 }

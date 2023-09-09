@@ -1,9 +1,48 @@
-<h1>Welcome to {{ hotelName }}</h1>
+<!-- interpolation using {{}} -->
+<h1>Welcome to {{hotelName}}</h1>
+
+
 <div [hidden]="hideRooms">
-    Number of rooms:
-<div [innerText]="numberOfRooms"></div>
+
+
+    <!--use ngStyle directive  -->
+    <!-- another syntax: <div *ngIf="rooms.availableRooms > 0" [ngStyle]="{color: 'darkgreen'}"> -->
+    <div [ngStyle]="{color: rooms.availableRooms > 0 ? 'darkgreen' : 'red'}">
+
+        <!-- use property binding [HtmlPropertyName]="ComponentPropertyName" -->
+        <!-- JavaScript syntax: document.getElementById('numberOfRooms').innerText = numberOfRooms; -->
+        Number of Rooms: <span [innerText]="numberOfRooms"></span>
+    </div>
+
 </div>
 
+<!-- Event binding using banana syntax-->
 <button (click)="toggle()">Toggle</button>
 
-<!-- document.getElementById('numberOfRooms').innerText = this.numberOfRooms;  -->
+
+<!--use *ngIf directive -->
+<!--use *ngIf directive -->
+<div *ngIf="rooms.availableRooms">
+    <app-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+</div>
+
+
+
+<!-- try json  and slice pipe
+    <div>{{roomList | json}}</div>
+    <div>{{roomList |slice: 0:2 | json}}</div>
+-->
+
+<!--use ngSwith directive-->
+<div [ngSwitch]="role">
+    <div *ngSwitchCase="'user'">Welcome user</div>
+    <div *ngSwitchCase="'admin'">Welcome admin</div>
+    <div *ngSwitchDefault> Welcome!</div>
+</div>
+
+<div *ngIf="selectedRoom">
+    {{selectedRoom | json}}
+
+</div>
+
+<button (click)="addRoom()">Add Room</button>
