@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 })
 export class RoomsBookingComponent implements OnInit{
 
-    id$ = this.router.paramMap.pipe(map(paramMap => !!paramMap.get('roomNumber')));
+    id$ = this.router.paramMap.pipe(map(paramMap => paramMap.get('roomNumber')));
 
     constructor(private router: ActivatedRoute) { }
   
