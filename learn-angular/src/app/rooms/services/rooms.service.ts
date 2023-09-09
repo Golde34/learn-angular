@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
     providedIn: 'root'
 })
 export class RoomsService {
+
     roomList: RoomList[] = [];
 
     // Add HttpClient
@@ -17,6 +18,6 @@ export class RoomsService {
     }
 
     addRoom(room: RoomList) {
-        return this.http.post<RoomList>('api/rooms', room);
+        return this.http.post<RoomList[]>('api/rooms', room);
     }
 }

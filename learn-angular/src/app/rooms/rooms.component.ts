@@ -56,9 +56,9 @@ export class RoomsComponent implements OnInit {
       rating: 4.8
     }
 
-    //this.roomList = this.roomService.addRoom(room);
+    // this.roomList = this.roomService.addRoom(room);
+    this.roomService.addRoom(room).subscribe(rooms => {this.roomList = rooms})
 
-    this.roomService.addRoom(room).subscribe(room => {this.roomList.push(room)});
   }
 
 }
